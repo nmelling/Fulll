@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "exec:algo": "bun run ./Algo/index.ts"
+    "exec:algo": "bun run ./Algo/index.ts",
+    "test:algo": "bun test ./Algo/tests/algo.spec.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.16",
