@@ -1,16 +1,19 @@
 {
   "name": "project",
   "version": "1.0.0",
-  "license": "proprietary",
   "devDependencies": {
-    "@cucumber/cucumber": "^8.3.0",
-    "@types/cucumber": "^6.0.1",
+    "@cucumber/cucumber": "^12.9.0",
     "@types/bun": "latest"
-  },
-  "scripts": {
-    "test": "cucumber-js --profile default"
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "license": "proprietary",
+  "scripts": {
+    "test": "bun test",
+    "test:watch": "bun test --watch"
+  },
+  "dependencies": {
+    "remeda": "^2.37.0"
   }
 }
