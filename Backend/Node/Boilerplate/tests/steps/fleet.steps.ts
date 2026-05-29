@@ -1,6 +1,8 @@
 import { Given, Then, When } from "@cucumber/cucumber";
 
-Given("my fleet", () => {});
+Given("my fleet", () => {
+  return {};
+});
 Given("I have registered this vehicle into my fleet", () => {});
 Given("the fleet of another user", () => {});
 Given("this vehicle has been registered into the other user's fleet", () => {});
