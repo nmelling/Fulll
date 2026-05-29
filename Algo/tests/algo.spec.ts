@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
-import { fizzbuzz, fizzbuzzLooper, isMultipleOf3, isMultipleOf5 } from "..";
 import { BUZZ, FIZZ, FIZZBUZZ } from "../constants";
+import { fizzbuzz, fizzbuzzLooper, isMultipleOf3, isMultipleOf5 } from "../domain";
 
 const NUM_FIZZBUZZ = 15;
 const NUM_FIZZ = 3;
