@@ -21,5 +21,6 @@ export function fizzbuzz(num: number): FizzbuzzOutput {
 }
 
 export function fizzbuzzLooper(max: number): FizzbuzzOutput[] {
-  return [];
+  if (max < 1 || !Number.isSafeInteger(max)) return [];
+  return new Array(max).fill(null).map((_, index) => fizzbuzz(index + 1));
 }
