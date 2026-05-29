@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { fizzbuzz, isMultipleOf3, isMultipleOf5 } from "..";
+import { fizzbuzz, fizzbuzzLooper, isMultipleOf3, isMultipleOf5 } from "..";
 import { BUZZ, FIZZ, FIZZBUZZ } from "../constants";
 
 const NUM_FIZZBUZZ = 15;
@@ -37,31 +37,50 @@ describe("isMultipleOf5 behaviour", () => {
   });
 });
 
-describe("FizzBuzz basic behaviour", () => {
-  test("If number can be divided by 3 AND 5: display FizzBuzz", () => {
-    const res = fizzbuzz(NUM_FIZZBUZZ);
-    expect(res).toBe(FIZZBUZZ);
+describe("FizzBuzz", () => {
+  describe("FizzBuzz basic behaviour", () => {
+    test("If number can be divided by 3 AND 5: display FizzBuzz", () => {
+      const res = fizzbuzz(NUM_FIZZBUZZ);
+      expect(res).toBe(FIZZBUZZ);
+    });
+    test("If number can be divided by 3 AND NOT by 5: display Fizz", () => {
+      const res = fizzbuzz(NUM_FIZZ);
+      expect(res).toBe(FIZZ);
+    });
+    test("If number can be divided by 5 AND NOT by 3: display Buzz", () => {
+      const res = fizzbuzz(NUM_BUZZ);
+      expect(res).toBe(BUZZ);
+    });
+    test("Else: display the number", () => {
+      const res = fizzbuzz(NOT_MULTIPLE_NUM);
+      expect(res).toBe(NOT_MULTIPLE_NUM);
+    });
   });
-  test("If number can be divided by 3 AND NOT by 5: display Fizz", () => {
-    const res = fizzbuzz(NUM_FIZZ);
-    expect(res).toBe(FIZZ);
-  });
-  test("If number can be divided by 5 AND NOT by 3: display Buzz", () => {
-    const res = fizzbuzz(NUM_BUZZ);
-    expect(res).toBe(BUZZ);
-  });
-  test("Else: display the number", () => {
-    const res = fizzbuzz(NOT_MULTIPLE_NUM);
-    expect(res).toBe(NOT_MULTIPLE_NUM);
+
+  describe("FizzBuzz incorrect entry", () => {
+    test("Any number below 1 not allowed", () => {
+      expect(() => fizzbuzz(ZERO)).toThrow();
+      expect(() => fizzbuzz(NEGATIVE_NUM)).toThrow();
+    });
+    test("Float number not allowed", () => {
+      expect(() => fizzbuzz(FLOAT_NUM)).toThrow();
+    });
   });
 });
 
-describe("FizzBuzz incorrect entry", () => {
-  test("Any number below 1 not allowed", () => {
-    expect(() => fizzbuzz(ZERO)).toThrow();
-    expect(() => fizzbuzz(NEGATIVE_NUM)).toThrow();
+describe("FizzbuzzLooper behaviour", () => {
+  describe("FizzbuzzLooper correct entry", () => {
+    test("Check behaviour until 15", () => {
+      const res = fizzbuzzLooper(15);
+      expect(res).toEqual([1, 2, FIZZ, 4, BUZZ, FIZZ, 7, 8, FIZZ, BUZZ, 11, FIZZ, 13, 14, FIZZBUZZ]);
+    });
   });
-  test("Float number not allowed", () => {
-    expect(() => fizzbuzz(FLOAT_NUM)).toThrow();
+
+  describe("FizzBuzz incorrect entry", () => {
+    test("Any number below 1 or float number should returns an empty array", () => {
+      expect(fizzbuzzLooper(ZERO)).toEqual([]);
+      expect(fizzbuzzLooper(NEGATIVE_NUM)).toEqual([]);
+      expect(fizzbuzzLooper(FLOAT_NUM)).toEqual([]);
+    });
   });
 });
